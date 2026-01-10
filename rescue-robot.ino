@@ -159,8 +159,7 @@ Menu tests = { {
     {"Run Until Black Backward", [](){motor_controller.run_until_black(0.0, true, true);}},
     {"Run Rotate Left", [](){motor_controller.move(160, -1.0), delay(2000); motor_controller.stop();}},
     {"Run Rotate Right", [](){motor_controller.move(160, 1.0), delay(2000); motor_controller.stop();}},
-    {"Run Until White", [](){motor_controller.run_until_white();}},
-    {"Manual Control", [](){control_mode();}}
+    {"Run Until White", [](){motor_controller.run_until_white();}}
 
 }};
 
