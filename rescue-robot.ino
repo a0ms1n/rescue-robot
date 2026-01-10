@@ -22,7 +22,7 @@ void control_mode() {
             switch (usb)
             {
             case 'w':
-                motor_controller.move(50, dir);
+                     motor_controller.move(50, dir);
                 break;
             case 'a':
                 dir = 0.5;
@@ -45,11 +45,11 @@ void control_mode() {
 }
 
 void deploy_dice() {
-    servo(1, 55);
+    servo(3, 55);
     delay(300);
-    servo(1, 180);
+    servo(3, 180);
     delay(300);
-    servo(1, 150);
+    servo(3, 150);
 }
 
 void deflag() {
@@ -66,41 +66,118 @@ void run_auto() {
     // while (1) {
     //     motor_controller.rotate_to(90);
     //     motor_controller.run();
-    // }
+    //      motor_controller.run_until_black(0.0); forward
+            //motor_controller.run_until_black(0.0, true, true); back
+
+
+
+    //motor_controller.run_until_black(0.0, true, false, 140, 0.5);
+    //deploy_dice();
+    
 }
 
-void run() {
-    motor_controller.run(1.2);
-    motor_controller.rotate_to(90.0);
-    motor_controller.run_until_black(0.00); //checkpoint 1
-    
-    motor_controller.run_until_black(0.00 , true, true);
-    motor_controller.rotate_to(0.0);
-    motor_controller.run(1.0);
-    motor_controller.rotate_to(90.0);
-    motor_controller.run_until_black(0.00);
-    motor_controller.rotate_to(0.0);
-    motor_controller.run_until_black(0.00);
-    motor_controller.rotate_to(90.0);
-    motor_controller.run_until_black(0.00, true, false, 130, 0.5);
-    deploy_dice(); //1st
-    
-    motor_controller.run(-0.5);
-    motor_controller.rotate_to(-90.0);
-    motor_controller.run_until_black(0.00);
-    motor_controller.rotate_to(180.0);
-    motor_controller.run_until_black(0.00);
-    motor_controller.rotate_to(-90.0);
-    motor_controller.run_until_black(0.00);
-    motor_controller.rotate_to(0.0);
-    motor_controller.run_until_black(0.00);
-    motor_controller.rotate_to(90.0);
-    motor_controller.run_until_black(0.00);
-    motor_controller.rotate_to(0.0);
-    motor_controller.run_until_black(0.00);
-    motor_controller.rotate_to(-90.0);
+int N = 0;// ==>
+int S = 180;// <==
+int E = 90;// ^
+int West = -90;// v
 
-    motor_controller.stop();
+void run() {
+    motor_controller.run(0.75);
+    motor_controller.rotate_to(E);
+    motor_controller.run_until_black(0.0);
+    motor_controller.run_until_black(0.0, true,true);
+    motor_controller.rotate_to(N);
+    motor_controller.run(1);
+    motor_controller.rotate_to(E);
+    motor_controller.run_until_black(0.0);
+    motor_controller.rotate_to(N);
+    motor_controller.run_until_black(0.0,true,true);
+    motor_controller.run_until_black(0.0);
+    motor_controller.rotate_to(E);
+    motor_controller.run_until_black(0.0, true, false, 140, 0.5);
+    deploy_dice();
+    motor_controller.run_until_black(0.0,true,true);
+    motor_controller.rotate_to(N);
+    motor_controller.run_until_black(0.0,true,true);
+    motor_controller.rotate_to(West);
+    motor_controller.run_until_black(0.0);
+    motor_controller.rotate_to(West);
+    motor_controller.run_until_black(0.0);
+    motor_controller.rotate_to(N);
+    motor_controller.run(1.5);
+    motor_controller.run_until_black(0.0);
+    motor_controller.rotate_to(E);
+    motor_controller.run_until_black(0.0);
+    motor_controller.rotate_to(N);
+    motor_controller.run_until_black(0.0);
+    motor_controller.rotate_to(West);
+    motor_controller.run_until_black(0.0);
+    motor_controller.rotate_to(N);
+    motor_controller.run_until_black(0.0, true, false, 140, 0.5);
+    deploy_dice();
+    motor_controller.run_until_black(0.0,true,true);
+    motor_controller.rotate_to(E);
+    motor_controller.run_until_black(0.0, true, false, 140, 0.5);
+    deploy_dice();
+    motor_controller.run(-0.87);
+    motor_controller.rotate_to(N);
+    motor_controller.run_until_black(0.0);
+    motor_controller.rotate_to(West);
+    motor_controller.run_until_black(0.0, true, false, 140, 0.5);
+    deploy_dice();
+    motor_controller.run_until_black(0.0,true,true);
+    motor_controller.rotate_to(N);
+    motor_controller.run_until_black(0.0,true,true);
+    motor_controller.rotate_to(West);
+    motor_controller.run(-1);
+    motor_controller.rotate_to(N);
+    motor_controller.run_until_black(0.0);
+    motor_controller.run(-1.0);
+    motor_controller.rotate_to(E);
+    motor_controller.run_until_black(0.0);
+    motor_controller.run(1);
+    motor_controller.run_until_black(0.0);
+    motor_controller.rotate_to(N);
+    motor_controller.run_until_black(0.0,true,true);
+    motor_controller.rotate_to(West);
+    motor_controller.run_until_black(0.0);
+    motor_controller.rotate_to(N);
+    motor_controller.run_until_black(0.0,true,true);
+    motor_controller.rotate_to(E);
+    motor_controller.run_until_black(0.0);
+    motor_controller.rotate_to(N);
+    motor_controller.run_until_black(0.0,true,true);
+    motor_controller.rotate_to(West);
+    motor_controller.run_until_black(0.0);
+    motor_controller.run_until_black(0.0,true,true);
+    motor_controller.rotate_to(N);
+    motor_controller.run_until_black(0.0);
+    motor_controller.rotate_to(West);
+    motor_controller.run_until_black(0.0);
+    motor_controller.rotate_to(N);
+    motor_controller.run_until_black(0.0);
+    motor_controller.rotate_to(E);
+    motor_controller.run_until_black(0.0);
+    motor_controller.rotate_to(N);
+    motor_controller.run_until_black(0.0);
+    motor_controller.rotate_to(West);
+    motor_controller.run_until_black(0.0);
+    motor_controller.run(1);
+    motor_controller.rotate_to(N);
+    motor_controller.run(2);
+    motor_controller.run_until_black(0.0,true,true);
+    motor_controller.run(-0.75);
+
+ 
+
+
+
+
+
+
+  
+   play_fur_elise();
+   motor_controller.stop();
 }   
 
 void test_motor() {
@@ -136,7 +213,9 @@ Menu tests = { {
     {"Run Until Black Backward", [](){motor_controller.run_until_black(0.0, true, true);}},
     {"Run Rotate Left", [](){motor_controller.move(160, -1.0), delay(2000); motor_controller.stop();}},
     {"Run Rotate Right", [](){motor_controller.move(160, 1.0), delay(2000); motor_controller.stop();}},
-    {"Run Until White", [](){motor_controller.run_until_white();}}
+    {"Run Until White", [](){motor_controller.run_until_white();}},
+    {"Manual Control", [](){control_mode();}}
+
 }};
 
 Menu menu = { {
@@ -144,7 +223,9 @@ Menu menu = { {
     {"Tests", [](){tests.menu();}},
     {"Control Mode", control_mode},
     {"Run Without Fixed", run_auto},
-    {"Calibrate Sensors", cali_sensors}
+    {"Calibrate Sensors", cali_sensors},
+    {"song", play_fur_elise},
+    {""}
 } };
 
 void loop() {
