@@ -29,6 +29,11 @@ void flag() {
     servo(2, 80);
 }
 
+int N = 0;// ==>
+int S = 180;// <==
+int E = 90;// ^
+int West = -90;// v
+
 void run() {
     motor_controller.run(0.75);
     motor_controller.rotate_to(E);
