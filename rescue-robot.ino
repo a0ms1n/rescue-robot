@@ -14,11 +14,11 @@ void setup() {
 }
 
 void deploy_dice() {
-    servo(3, 55);
+    servo(3, 80);
     delay(300);
     servo(3, 180);
     delay(300);
-    servo(3, 150);
+    servo(3, 175);
 }
 
 void deflag() {
@@ -29,106 +29,130 @@ void flag() {
     servo(2, 80);
 }
 
-int N = 0;// ==>
-int S = 180;// <==
-int E = 90;// ^
-int West = -90;// v
+int N = 0;// ==
+int S = 180;//
+int E = 90;// >
+int West = -90;// <
 
 void run() {
-    motor_controller.run(0.75);
-    motor_controller.rotate_to(E);
-    motor_controller.run_until_black(0.0);
-    motor_controller.run_until_black(0.0, true,true);
-    motor_controller.rotate_to(N);
     motor_controller.run(1);
+    motor_controller.run_until_black(0.0);
+    motor_controller.rotate_to(West);
+    motor_controller.run_until_black(0.0);
+    motor_controller.rotate_to(S);
+    motor_controller.run_until_black(0.0,true,true);
+    motor_controller.run_until_black(0.0,true,false,120);
     motor_controller.rotate_to(E);
-    motor_controller.run_until_black(0.0);
-    motor_controller.rotate_to(N);
+    motor_controller.run_until_black(0.0,true,false,120);
+    motor_controller.rotate_to(S);
+    motor_controller.run_until_black(0.0,false,false,180,0.5,false);
+    deploy_dice();
+    motor_controller.run(-0.5);
+    motor_controller.rotate_to(West);
     motor_controller.run_until_black(0.0,true,true);
+    motor_controller.run(3.3);
+    motor_controller.run_until_black(0.0,true,false,120);
+    motor_controller.rotate_to(N);
     motor_controller.run_until_black(0.0);
     motor_controller.rotate_to(E);
-    motor_controller.run_until_black(0.0, true, false, 140, 0.5);
+    motor_controller.run_until_black(0.0,false,false,180,0.4,false);
     deploy_dice();
-    motor_controller.run_until_black(0.0,true,true);
-    motor_controller.rotate_to(N);
-    motor_controller.run_until_black(0.0,true,true);
-    motor_controller.rotate_to(West);
-    motor_controller.run_until_black(0.0);
-    motor_controller.rotate_to(West);
-    motor_controller.run_until_black(0.0);
-    motor_controller.rotate_to(N);
-    motor_controller.run(1.5);
+    motor_controller.run(-0.5);
+    motor_controller.rotate_to(S);
     motor_controller.run_until_black(0.0);
     motor_controller.rotate_to(E);
-    motor_controller.run_until_black(0.0);
-    motor_controller.rotate_to(N);
-    motor_controller.run_until_black(0.0);
-    motor_controller.rotate_to(West);
-    motor_controller.run_until_black(0.0);
-    motor_controller.rotate_to(N);
-    motor_controller.run_until_black(0.0, true, false, 140, 0.5);
+    motor_controller.run_until_black(0.0,false,false,180,0.4,false);
     deploy_dice();
+    motor_controller.run(-0.5);
+    motor_controller.rotate_to(N);
     motor_controller.run_until_black(0.0,true,true);
+    motor_controller.run(0.8);
     motor_controller.rotate_to(E);
-    motor_controller.run_until_black(0.0, true, false, 140, 0.5);
-    deploy_dice();
-    motor_controller.run(-0.87);
-    motor_controller.rotate_to(N);
+    motor_controller.run(3.5,120);
+    motor_controller.rotate_to(S);
     motor_controller.run_until_black(0.0);
-    motor_controller.rotate_to(West);
-    motor_controller.run_until_black(0.0, true, false, 140, 0.5);
-    deploy_dice();
-    motor_controller.run_until_black(0.0,true,true);
-    motor_controller.rotate_to(N);
-    motor_controller.run_until_black(0.0,true,true);
-    motor_controller.rotate_to(West);
-    motor_controller.run(-1);
-    motor_controller.rotate_to(N);
-    motor_controller.run_until_black(0.0);
-    motor_controller.run(-1.0);
     motor_controller.rotate_to(E);
     motor_controller.run_until_black(0.0);
     motor_controller.run(1);
-    motor_controller.run_until_black(0.0);
-    motor_controller.rotate_to(N);
+    motor_controller.run_until_black(0.0,true,false,180,0.4,false);
     motor_controller.run_until_black(0.0,true,true);
-    motor_controller.rotate_to(West);
-    motor_controller.run_until_black(0.0);
-    motor_controller.rotate_to(N);
-    motor_controller.run_until_black(0.0,true,true);
-    motor_controller.rotate_to(E);
-    motor_controller.run_until_black(0.0);
-    motor_controller.rotate_to(N);
-    motor_controller.run_until_black(0.0,true,true);
-    motor_controller.rotate_to(West);
-    motor_controller.run_until_black(0.0);
-    motor_controller.run_until_black(0.0,true,true);
-    motor_controller.rotate_to(N);
-    motor_controller.run_until_black(0.0);
     motor_controller.rotate_to(West);
     motor_controller.run_until_black(0.0);
     motor_controller.rotate_to(N);
     motor_controller.run_until_black(0.0);
     motor_controller.rotate_to(E);
     motor_controller.run_until_black(0.0);
+    motor_controller.rotate_to(West);
+    motor_controller.run_until_black(0.0);
+    motor_controller.rotate_to(S);
+    motor_controller.run(0.9);
+    motor_controller.rotate_to(E);
+    motor_controller.run_until_black(0.0,false,false,180,0.4,false);
+    deploy_dice();
+    motor_controller.rotate_to(West);
+    motor_controller.run_until_black(0.0);
+    motor_controller.rotate_to(S);
+    motor_controller.run(0.9);
+    motor_controller.rotate_to(E);
+    motor_controller.run_until_black(0.0);
     motor_controller.rotate_to(N);
     motor_controller.run_until_black(0.0);
     motor_controller.rotate_to(West);
     motor_controller.run_until_black(0.0);
-    motor_controller.run(1);
     motor_controller.rotate_to(N);
-    motor_controller.run(2);
-    motor_controller.run_until_black(0.0,true,true);
-    motor_controller.run(-0.75);
-
- 
-
-
-
+    motor_controller.run_until_black(0.0);
+    motor_controller.rotate_to(E);
+    motor_controller.run_until_black(0.0);
+    motor_controller.rotate_to(S);
+    motor_controller.run_until_black(0.0);
+    motor_controller.run(0.9);
 
 
 
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
    play_fur_elise();
    motor_controller.stop();
 }   
@@ -136,7 +160,7 @@ void run() {
 
 Menu tests = { {
     {"Test Motor", [](){
-        while (1) motor_controller.move(100, 0.0);
+        while (1) motor_controller.move(180, 0.0);
     }},
     {"Test IMU", [](){
         while (1) {

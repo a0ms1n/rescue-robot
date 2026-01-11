@@ -54,7 +54,7 @@ class MotorSetPairController {
             stop();
         }
 
-        void run_until_black(float boost = 1.0f, bool back_up = true, bool backward = false, int pow = 180, float black = 0.9) {
+        void run_until_black(float boost = 1.0f, bool back_up = true, bool backward = false, int pow = 180, float black = 0.9, bool to_align = true) {
             int DIR  = backward ? -1 : 1;
             SensorSet* sensor = backward ? &back_sensor : &front_sensor;
             
@@ -90,14 +90,16 @@ class MotorSetPairController {
             };
 
             move(DIR*-pow, 0.0);
-            delay(220);
+            delay(270);
             stop();
 
             delay(100);
-            align(backward);
+            if (to_align) {
+                align(backward, black);
+            }
             
             if (back_up) {
-                move(DIR*-150, 0.0);
+                move(DIR*-110, 0.0);
                 delay(130);
                 stop();
             }
@@ -143,7 +145,7 @@ class MotorSetPairController {
 
         PID alignPID = {4.0, 0.0, 0.4};
         
-        void align(bool backward = true) {
+        void align(bool backward = true, float black = 0.5) {
             SensorSet* nearSensor = backward ? &back_sensor : &front_sensor;
             SensorSet* farSensor = backward ? &far_back_sensor : &far_front_sensor;
 
@@ -151,7 +153,6 @@ class MotorSetPairController {
 
             int SEARCH_SPEED = backward ? -100 : 100;
             int ALIGN_DIR  = backward ? -1 : 1;
-            const double BLACK_MIN = 0.5;    // bar detection threshold
             const double CENTER_EPS = 0.1;  // balance tolerance
         
             for (SensorSet* sensor : sensors) {
@@ -161,7 +162,7 @@ class MotorSetPairController {
                 int start = now;
                 int lastTime = now;
 
-                while (sensor->get_normalised() >= BLACK_MIN) {
+                while (sensor->get_normalised() >= black) {
                     if (now - start > 200) {
                         unable = true;
                         stop();
@@ -171,7 +172,7 @@ class MotorSetPairController {
                     move(-SEARCH_SPEED, 0.0);
                     unable = false;
                 }
-                while (sensor->get_normalised() < BLACK_MIN) {
+                while (sensor->get_normalised() < black) {
                     if (now - start > 200) {
                         unable = true;
                         stop();
@@ -205,10 +206,14 @@ class MotorSetPairController {
                     if (fabs(dir) < CENTER_EPS) {
                         break;
                     }
-                
-                    int fb = (strength > BLACK_MIN) ? ALIGN_DIR * 100 : ALIGN_DIR * -100;
 
-                    move(fb, -dir);
+                    clear();
+                    drawTextFmt(0, 0, WHITE, "%f", dir);
+                    flip();
+
+                    int fb = (strength > black) ? ALIGN_DIR * 140 : ALIGN_DIR * -140;
+
+                    move(fb, dir);
                 }
             }
 
@@ -233,9 +238,9 @@ class MotorSetPairController {
             
             float absError = fabs(error);
             if (absError >= 100) {
-                yawPID = {1.80, 0.0, 0.0};
+                yawPID = {2.80, 0.0, 4.0};
             } else {
-                yawPID = {3, 0.0, 0.0};
+                yawPID = {4.5, 0.0, 4.0};
             }
             
             yawPID.reset();

@@ -6,16 +6,14 @@
 #include "draw/draw.hpp"
 #include "sensor/IMUSensor.h"
 
-const MotorSet motorSets[2] = { {3, 1, 0, 0, 0, 0},   // Front
-                                {4, 2, 0, 0, 0, 0}};  // Back
-
+const MotorSet motorSets[2] = { {1, 2, 0, 0, 0, 10},   // Front
+                                {3, 4, 0, 0, 0, 10}};  // Back
 Sensor sensors[8] = {
-    {0, 483, 2959}, {1, 846, 3766},  // Front
-    {2, 217, 1489}, {3, 201, 1584},  // Back
-    {4, 212, 1583}, {5, 490, 3445},  // Left
-    {6, 608, 3080}, {7, 956, 2160}   // Right
+    {0, 344, 1817}, {1, 902, 3758},  // Front
+    {2, 244, 1389}, {3, 200, 1367},  // Back+
+    {4, 680, 3756}, {5, 438, 2704},  // Left
+    {6, 673, 3027}, {7, 511, 2809}   // Right
 };
-
 SensorSet sensorSets[4] = { { &sensors[0], &sensors[1] },   // Front
                             { &sensors[2], &sensors[3] },   // Back
                             { &sensors[4], &sensors[5] },   // Left
@@ -33,9 +31,10 @@ MotorSetPairController  motor_controller  = { sensor_controller,
                                               motorSets[1] };
 
 
+
 #include <string>
 String sensor_debug_names[4] = {
-    "Front Sensor",
+    "Front Sensor"
     "Back Sensor",
     "Left Sensor",
     "Right Sensor"
